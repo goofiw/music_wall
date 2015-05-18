@@ -20,6 +20,8 @@ GEM
     atomic (1.1.16)
     backports (3.4.0)
     bond (0.4.3)
+    bootstrap-sass (3.2.0.0)
+      sass (~> 3.2)
     builder (3.1.4)
     coderay (1.1.0)
     i18n (0.6.9)
@@ -46,6 +48,7 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5)
       ripl (>= 0.3.5)
+    sass (3.4.13)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.4.4)
@@ -79,6 +82,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  bootstrap-sass
   pry
   puma
   rake
