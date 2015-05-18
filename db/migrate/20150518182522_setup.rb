@@ -3,7 +3,7 @@ class Setup < ActiveRecord::Migration
   	create_table :songs do |t|
   		t.string :song_title
   		t.string :author
-  		t.string :URL
+  		t.string :url
   		t.timestamps
   		
   	end

@@ -1,1 +1,43 @@
 <h1>Home Page</h1>
+<% if @songs %>
+	<% @songs.each do |song| %>
+	  <div class="song">
+		   <small>(by: <a href="/author/<%= song.id %>"><%= song.author %>)</a></small></h3>
+	    <p>
+	      <%= song.song_title %>
+	      <a href="<%= song.url %>"><%= song.url %></a>
+	    </p>
+	  </div>
+	<% end %>  
+<% end %>
+
+	<!-- Display error messages -->
+<% if @song && @song.errors.any? %>
+  <div>
+    <strong>Some issues with your song, please fix them:</strong>
+    <ul>
+      <% @song.errors.full_messages.each do |song| %>
+      <li><%= song %></li>
+      <% end %>
+    </ul>
+    <a href="/">Back!</a>
+  </div>
+<% end %>
+
+<form method="post" action="/">
+  <div>
+    <label>Author:</label>
+    <input type="text" name="author" value="<%= @song && @song.author %>">  
+  </div>
+  <div>
+    <label>Song:</label>
+    <input type="text" name="song_title" value="<%= @song && @song.song_title %>">
+  </div>
+  <div>
+    <label>URL:</label>
+    <input type="text" name="url" value="<%= @song && @song.url %>">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>

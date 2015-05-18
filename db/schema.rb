@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20150518182522) do
   create_table "songs", force: true do |t|
     t.string   "song_title"
     t.string   "author"
-    t.string   "URL"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
