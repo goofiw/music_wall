@@ -7,7 +7,7 @@ end
 post '/' do
 		@song = Song.new(
 		         song_title: params[:song_title],
-		         author: params[:author],
+		         user_id: params[:user_id],
 		         url: params[:url] || ""
 		            )
 	if @song.save

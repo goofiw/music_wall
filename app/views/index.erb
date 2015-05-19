@@ -1,7 +1,4 @@
-<div class="center jumbotron">
-	<h1>Welcome to song SPLAT!</h1>
-	<h2>A Site for suggesting songs for other users!</h2>
-</div>
+
 <% if @songs %>
 	<% @songs.each do |song| %>
 	  <div class="song" class="panel panel-default">
@@ -11,7 +8,7 @@
 	      <a href="<%= song.url %>"><%= song.url %></a>
 	    </p>
       
-	    <div class="panel-footer small">submitted by: <a href="/author/<%= song.id %>"><%= song.author %></a>
+	    <div class="panel-footer small">submitted by: <a href="/author/<%= song.id %>"><%= song.user_id %></a>
       </div>
 	  </div>
 	<% end %>  

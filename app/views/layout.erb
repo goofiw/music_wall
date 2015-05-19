@@ -18,9 +18,25 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
 
-  <title></title>
+
+  <title>Music Splat</title>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <a href="/", home >Home</a>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/signin", home >Sign In</a></li>
+        <li><a href="/create", home >Create Profile</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 </head>
 <body>
+<div class="center jumbotron">
+  <h1>Welcome to song SPLAT!</h1>
+  <h2>A Site for suggesting songs for other users!</h2>
+</div>
   <%= yield %>
 </body>
 </html>
