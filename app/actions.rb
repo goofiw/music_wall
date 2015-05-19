@@ -8,6 +8,12 @@ helpers do
   def sort_desc_by_votes
     #sorts the songs into an array of songs based on votes
   end
+
+  def total_votes(id)
+  	puts "song id"
+  	puts id
+  	Vote.where(song_id: id).sum("vote")
+  end
 end
 
 get '/' do
@@ -54,9 +60,6 @@ end
 
 post '/signin' do
 	user = User.find_by(username: params[:username])
-	puts user
-	puts user.password
-	puts user.username
 	if user && user.password == params[:password]
 		session[:id] = user.id
 		puts session[:id].inspect
@@ -71,6 +74,15 @@ end
 get '/logout' do
 	session[:id] = nil
 	redirect '/'
+end
+
+get '/vote/:id' do
+  vote = Vote.new(user_id: session[:id],
+  	       song_id: params[:id],
+  	       vote: 1
+  	       )
+  vote.save
+  redirect '/'
 end
 
 # get '/messages/:id' do
