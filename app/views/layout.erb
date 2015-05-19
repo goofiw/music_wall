@@ -25,8 +25,13 @@
     <a href="/", home >Home</a>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/signin", home >Sign In</a></li>
-        <li><a href="/create", home >Create Profile</a></li>
+        <% if session[:id] %>
+          <li><a href="/logout", home >Logout</a></li>
+          <li><a href="/<%= session[:id] %>", profile> <%= post_user(session[:id]) %></a></li>  
+        <% else %>  
+          <li><a href="/signin", home >Sign In</a></li>
+          <li><a href="/create", home >Create Profile</a></li>
+        <% end %>
       </ul>
     </nav>
   </div>

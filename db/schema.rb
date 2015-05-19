@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518182522) do
+ActiveRecord::Schema.define(version: 20150519191748) do
 
   create_table "songs", force: true do |t|
     t.integer  "user_id"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20150518182522) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer "user_id"
+    t.integer "song_id"
+    t.integer "vote",    limit: 1
   end
 
 end
