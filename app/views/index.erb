@@ -8,7 +8,7 @@
 	      <% unless current_user_voted?(song) %>
 		      <a href="/vote/<%= song.id %>">Vote!</a>
 		    <% end %>
-	      <%= song.song_title %>
+	      <a href="/song/<%= song.id %>"><%= song.song_title %></a>
 	      <a href="<%= song.url %>"><%= song.url %></a>
 	    </p>
       

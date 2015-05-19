@@ -70,7 +70,6 @@ post '/create' do
 	else
 		erb :create
 	end
-
 end
 
 get '/signin' do
@@ -104,6 +103,12 @@ get '/vote/:id' do
   redirect '/'
 end
 
+get '/song/:id' do
+  @song = Song.find(params[:id])
+  erb :'song/id'
+end
+
+post 
 # get '/messages/:id' do
 # 	@message = Message.find params[:id]
 # 	erb :'messages/show'
