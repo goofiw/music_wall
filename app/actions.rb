@@ -108,7 +108,18 @@ get '/song/:id' do
   erb :'song/id'
 end
 
-post 
+post '/songs/:id' do
+		@review = Review.new(
+						         song_id: params[:id],
+						         user_id: session[:id],
+						         content: params[:content]
+					         )
+	if @review.save
+		redirect "/song/#{params[:id]}"
+	else
+		erb :'song/id'
+	end
+end
 # get '/messages/:id' do
 # 	@message = Message.find params[:id]
 # 	erb :'messages/show'
