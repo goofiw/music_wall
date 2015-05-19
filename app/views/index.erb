@@ -1,11 +1,11 @@
 
 <% if @songs %>
-	<% @songs.each do |song| %>
+	<% sort_desc_by_votes.each do |song| %>
 	  <div class="song" class="panel panel-default">
 		   
 	    <p class"panel-body">
-	      <%= total_votes(song.id) %>
-	      <% if true %>
+	      <%= song.vote_count %>
+	      <% unless current_user_voted?(song) %>
 		      <a href="/vote/<%= song.id %>">Vote!</a>
 		    <% end %>
 	      <%= song.song_title %>

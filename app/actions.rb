@@ -5,14 +5,33 @@ helpers do
     User.find(arg.user_id).username
   end
 
-  def sort_desc_by_votes
-    #sorts the songs into an array of songs based on votes
+  def ass_votes
+  	Song.all.each do |song| 
+  		song.vote_count = total_votes(song.id) 
+  		song.save
+  	end
   end
 
-  def total_votes(id)
+  def sort_desc_by_votes
+    ass_votes
+    Song.order(vote_count: :desc)
+  end
+
+  def total_votes(song_id)
   	puts "song id"
-  	puts id
-  	Vote.where(song_id: id).sum("vote")
+  	Vote.where(song_id: song_id).sum("vote")
+  end
+
+
+  	# if !!Vote.find_by(user_id: user_id) && 
+  		 # !!Vote.find_by(song_id: song_id)
+  def current_user_voted?(song)
+    !!Vote.find_by(song_id: song.id) &&
+       Vote.find_by(user_id: session[:id])
+  end
+
+  def session?
+  	!!session[:id]
   end
 end
 
