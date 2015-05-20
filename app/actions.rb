@@ -17,21 +17,36 @@ helpers do
     Song.order(vote_count: :desc)
   end
 
+  def sort_desc_by_date
+  	Review.order(created_at: :desc)
+  end
+
   def total_votes(song_id)
   	puts "song id"
   	Vote.where(song_id: song_id).sum("vote")
   end
 
-
-  	# if !!Vote.find_by(user_id: user_id) && 
-  		 # !!Vote.find_by(song_id: song_id)
   def current_user_voted?(song)
     !!Vote.find_by(song_id: song.id) &&
        Vote.find_by(user_id: session[:id])
   end
 
+   def user_reviewed?(song)
+    !!Review.find_by(song_id: song.id) &&
+       Review.find_by(user_id: session[:id])
+  end
+
   def session?
   	!!session[:id]
+  end
+
+  def get_username(user_id)
+  	User.find(user_id).username
+  end
+
+  def get_user_url(user_id)
+  	#User.find(user_id).url
+  	"placeholder"
   end
 end
 
@@ -105,15 +120,18 @@ end
 
 get '/song/:id' do
   @song = Song.find(params[:id])
+  puts @song.id
   erb :'song/id'
 end
 
-post '/songs/:id' do
-		@review = Review.new(
-						         song_id: params[:id],
-						         user_id: session[:id],
-						         content: params[:content]
-					         )
+post '/song/:id' do
+  puts params[:id]
+  puts "should be :id but the number"
+	@review = Review.new(
+					         song_id: params[:id],
+					         user_id: session[:id],
+					         content: params[:content]
+				         )
 	if @review.save
 		redirect "/song/#{params[:id]}"
 	else
