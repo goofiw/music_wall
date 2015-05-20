@@ -95,7 +95,6 @@ post '/signin' do
 	user = User.find_by(username: params[:username])
 	if user && user.password == params[:password]
 		session[:id] = user.id
-		puts session[:id].inspect
 		@errors = nil
 		redirect '/'
 	else
@@ -118,15 +117,20 @@ get '/vote/:id' do
   redirect '/'
 end
 
+get '/song/destroy/:id' do
+  song_id = params[:id]
+  review =  Review.where("song_id = ? AND user_id = ?", 
+              song_id, session[:id].to_s).first
+  review.destroy
+  redirect "/song/#{song_id}"
+end
+
 get '/song/:id' do
   @song = Song.find(params[:id])
-  puts @song.id
   erb :'song/id'
 end
 
 post '/song/:id' do
-  puts params[:id]
-  puts "should be :id but the number"
 	@review = Review.new(
 					         song_id: params[:id],
 					         user_id: session[:id],
