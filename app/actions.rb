@@ -134,8 +134,10 @@ post '/song/:id' do
 	@review = Review.new(
 					         song_id: params[:id],
 					         user_id: session[:id],
-					         content: params[:content]
+					         content: params[:content],
+					         rating: params[:rating].to_i
 				         )
+
 	if @review.save
 		redirect "/song/#{params[:id]}"
 	else
